@@ -23,8 +23,8 @@ class Sprite:
         screen.blit(self.bitmap, (self.x, self.y))
 
 racer = Sprite(280, 300, "racer.bmp")
-racer.ride = False
-enemy = Sprite(0, 0, "enemy.bmp")
+startgame = False
+enemy = Sprite(280, -100, "enemy.bmp")
 roadline = {
     "key": pygame.Surface((10, 30)),
     "posx": 340,
@@ -37,22 +37,22 @@ while 1:
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT and racer.x != 120:
                 racer.x -= 10
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT and racer.x != 440:
                 racer.x += 10
             if event.key == pygame.K_UP:
-                racer.ride = True
+                startgame = True
 
     screen.blit(background, (0, 0))
     for i in range(2000):
-        if racer.ride is True:
+        if startgame is True:
             screen.blit(roadline["key"], (roadline["posx"], roadline["posy"]))
             roadline["posy"] += i
-    if racer.ride is True:
-        enemy.x += random.randint(160, 240)
-        enemy.y += random.randint(0, 320)
+    if startgame is True:
+        enemy.x += random.randint(-20, 20)
+        enemy.y += 10
     enemy.render()
     racer.render()
     pygame.display.update()
-    pygame.time.delay(400)
+    pygame.time.delay(30)
