@@ -51,7 +51,7 @@ while 1:
             if event.key == pygame.K_UP:
                 startgame = True
 
-  # if Intersect(racer.x, enemy.x, racer.y, enemy.y, )
+    #if Intersect(racer.x, enemy.x, racer.y, enemy.y, )
 
     screen.blit(background, (0, 0))
     for i in range(2000):
@@ -68,4 +68,3 @@ while 1:
     enemy.render()
     racer.render()
     pygame.display.update()
-    pygame.time.delay(30)
