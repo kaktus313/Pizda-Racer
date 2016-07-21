@@ -52,6 +52,8 @@ pygame.mixer.pre_init(44100, -16, 1, 512)
 pygame.mixer.init()
 intromusic = pygame.mixer.Sound("coolorshit.ogg")
 intromusic.play(0)
+backmusic = pygame.mixer.Sound("backmusic.ogg")
+gameovermusic = pygame.mixer.Sound("gameover.ogg")
 # идёт игра
 while 1:
     for event in pygame.event.get():
@@ -68,19 +70,29 @@ while 1:
 
     if intersect(racer.x, enemy.x, racer.y, enemy.y, 30, 40):
         startgame = False
+        racer.x = -150
+        racer.y = -150
+        enemy.x = -300
+        enemy.y = -300
+        pygame.mixer.stop()
+        gameovermusic.play(0)
 
     screen.blit(background, (0, 0))
-    for i in range(2000):
-        if startgame is True:
+    for i in range(15):
+        if startgame:
             screen.blit(roadline["key"], (roadline["posx"], roadline["posy"]))
             roadline["posy"] += i
-    if startgame is True:
+    if startgame:
+        intromusic.stop()
+        backmusic.set_volume(0.5)
+        backmusic.play(-1)
         enemy.x += random.randint(-20, 20)
         if enemy.x <= 120:
             enemy.x += 20
         elif enemy.x >= 440:
             enemy.x -= 20
         enemy.y += 1
+
     enemy.render()
     racer.render()
     pygame.display.update()
