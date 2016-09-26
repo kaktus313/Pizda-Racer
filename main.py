@@ -1,7 +1,9 @@
 import pygame
 import random
 import zhostkii_racer
+import sys
 
+screen = zhostkii_racer.get_screen(640,480)
 pygame.init()
 
 pygame.display.set_caption("Гонки по бездорожью")
@@ -57,7 +59,7 @@ while 1:
                 if event.key == pygame.K_RIGHT and racer.x < 440:
                     racer.x += 10
 
-    if intersect(racer.x, enemy.x, racer.y, enemy.y, 30, 40):
+    if zhostkii_racer.intersect(racer.x, enemy.x, racer.y, enemy.y, 30, 40):
         gameover()
 
     screen.blit(background, (0, 0))
@@ -76,6 +78,6 @@ while 1:
             enemy.x -= 20
         enemy.y += 1
 
-    enemy.render()
-    racer.render()
+    enemy.render(screen)
+    racer.render(screen)
     pygame.display.update()

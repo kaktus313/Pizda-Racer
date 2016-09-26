@@ -1,6 +1,6 @@
 import pygame
 
-screen = pygame.display.set_mode((640, 480))
+
 
 
 class Sprite:
@@ -11,7 +11,7 @@ class Sprite:
         self.bitmap.set_colorkey((0, 0, 0))
 # а также функцию для его отображения
 
-    def render(self):
+    def render(self,screen):
         screen.blit(self.bitmap, (self.x, self.y))
 # функция называется "пересечение", возвращает True координаты объектов (и их смещения в зависимости от
 # размеров) пересекаются
@@ -23,3 +23,5 @@ def intersect(x1, x2, y1, y2, db1, db2):
     else:
         return 0
 
+def get_screen(x,y):
+    return pygame.display.set_mode((x, y))
