@@ -5,7 +5,7 @@ from pygame import mixer
 # инициализация pygame, создаём экран screen (640x480), делаем заголовок окну, загружаем фон, и рисуем его
 pygame.init()
 screen = pygame.display.set_mode((640, 480))
-pygame.display.set_caption("Гонки по безздорожью")
+pygame.display.set_caption("Гонки по бездорожью")
 background = pygame.image.load('background.bmp').convert()
 
 # создаём класс Sprite, он имеет положение x и y, загруженную картинку, и
